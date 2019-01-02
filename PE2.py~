@@ -9,10 +9,13 @@ def iterativeFibunder(under):
         temp = f2
         f2 = f1 + f2
         f1 = temp
-        print (f1,f2)
+        
         if(f2 % 2 == 0):
             fibsum = fibsum + f2
     
     return fibsum
 
 print iterativeFibunder(4000000)
+
+###     Answer: 4613732
+
