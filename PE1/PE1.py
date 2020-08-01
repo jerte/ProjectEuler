@@ -9,6 +9,24 @@ def multiplesSum(multiples,under):
                 break
     return sum1
 
-print multiplesSum([3,5],1000)
-
 ###     Answer: 233168
+
+## HackerRank version
+
+import sys
+
+def sum_3n5_multiples_under_n(n):
+	threes = int((n-1)/3)
+	fives = int((n-1)/5)
+	lcm = int((n-1)/15)
+	
+	return int(3*i_to_n_sum(threes) + 5*i_to_n_sum(fives) - 15*i_to_n_sum(lcm))
+
+def i_to_n_sum(n):
+	return n*(n+1) >> 1
+	
+t = int(input().strip())
+for i in range(t):
+	n = int(input().strip())
+	print(sum_3n5_multiples_under_n(n))
+
