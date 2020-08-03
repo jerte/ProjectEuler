@@ -51,8 +51,63 @@ def isPrime(x):
             return False
     return True
 
-print multiplelcm( [i for i in range(1,21)] )
 # Answer: 232792560
 
+## HackerRank version
 
+def is_prime(n):
+	for i in range(2, int(math.sqrt(n))+1):
+		if n%i == 0:
+			return False
+	return True
+
+def next_prime(n):
+	if n==2:
+		return 3
+	n += 2
+	while (not is_prime(n)):
+		n += 2
+	return n
+
+def prime_factorization(n):
+	if n == 1:
+		return [n]
+	prime_f = []
+	i = 2
+	while( n != 1 ):
+		if n % i ==0:
+			prime_f.append(i)
+			n /= i
+		else:
+			i = next_prime(i)
+	return prime_f
+
+def make_min_count_dict(list_o_lists):
+	d = {}
+	for i in list_o_lists:
+		temp_count = {}
+		for j in i:
+			if j in temp_count.keys():
+				temp_count[j] += 1
+			else:
+				temp_count[j] = 1
+		for j in temp_count.keys():
+			if (j in d.keys() and temp_count[j] > d[j]) or j not in d.keys():
+				d[j] = temp_count[j]
+	return d
+
+def smallest_multiple(n):
+	primes = []
+	for i in range(1, n+1):
+		primes.append(prime_factorization(i))
+	prime_count = make_min_count_dict(primes)
+	sm = 1
+	for i in prime_count.keys():
+		sm *= i**prime_count[i]
+	return sm
+
+t = int(input().strip())
+for a0 in range(t):
+	n = int(input().strip())
+	print(smallest_multiple(n))
 

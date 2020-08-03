@@ -40,28 +40,23 @@ def isPrime(num):
 
 ## HackerRank version
 
-import sys
-import math
-
-def is_prime(num):
-	for i in range(2,int(math.sqrt(num))+1):
-		if( num % i == 0 ):
-			return False
-	return True
+from math import sqrt
 
 def largest_prime_under(n):
-	if is_prime(n):
-		return n
+	while(n % 2==0):
+		n /= 2
+	if n==1:
+		return 2
 	else:
-		finder = int(n/2)+1
-		stopper = True
-		while( stopper ):
-			if is_prime(finder) and n % finder==0:
-				stopper = False
+		i = 3
+		
+		while( n!=1 and i<sqrt(n)+1 ):
+			if n % i ==0:
+				n /= i
 			else:
-				finder -= 1
-		return finder
-
+				i += 2
+		return max(int(n), i)
+	
 t = int(input().strip())
 for a0 in range(t):
 	n = int(input().strip())
